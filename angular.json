@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "angular-m1-t4": {
+    "node-tfi": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -63,10 +63,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-m1-t4:build:production"
+              "buildTarget": "node-tfi:build:production"
             },
             "development": {
-              "buildTarget": "angular-m1-t4:build:development"
+              "buildTarget": "node-tfi:build:development"
             }
           },
           "defaultConfiguration": "development"
