@@ -4,15 +4,13 @@
 
 ### Módulo 1: Node JS
 
-### Unidad 4: Integración Front-Back
+### Trabajo Final Integrador
 
-### Tarea 4: Conectando mi frontend con la API y desplegando.
+### Desarrollo en Node JS
 
 ### Objetivos:
 
-Conectar un frontend (React o Angular) a un backend en Express.
-
-Realizar peticiones reales y preparar ambos entornos para despliegue.
+Construir una API RESTful CON Node.js, Express y MongoDB que sirva como backend para una aplicación de chat (o similar), integrando la lógica del servidor con persistencia de datos en base de datos.
 
 ### Consideraciones del frontend de la aplicación:
 
@@ -28,7 +26,7 @@ No se pretende desarrollar una aplicación completa, sino establecer algunas fun
 1. Clonar el repositorio:
 
 ```bash
-git clone https://github.com/Diplomatura-Full-Stack-Developer/Node-M1-T4-Frontend
+git clone https://github.com/Diplomatura-Full-Stack-Developer/Node-TFI-Backend
 ```
 
 2. Instalar las dependencias:
@@ -73,7 +71,7 @@ firebase deploy
 
 ### Ejecutar aplicación en producción:
 
-[https://angular-m1-t4.web.app](https://angular-m1-t4.web.app)
+[https://node-tfi.web.app](https://node-tfi.web.app)
 
 ### Recursos utilizados:
 
