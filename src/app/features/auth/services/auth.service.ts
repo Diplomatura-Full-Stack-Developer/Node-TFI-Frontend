@@ -43,22 +43,16 @@ export class AuthService {
         return of(null);
       }),
     ).subscribe((response) => {
-      const raw = response as unknown as IUser & { _id?: string };
-      this.user.set(raw ? raw as IUser : undefined);
-      console.log(response);
+      const raw = response as unknown as { token: string, user: IUser & { _id?: string } };
+      this.setToken(raw.token);
+      this.user.set(raw.user as IUser);
+
     });
   }
 
   logoutUser(): void {
     this.token.set(undefined);
     this.user.set(undefined);
-    this.http.post<void>(`${this.apiUrl}/auth/logout`, {}).pipe(
-      catchError((error: { message: string }) => {
-        return of(null);
-      }),
-    ).subscribe((response) => {
-      console.log(response);
-    });
   }
 
 }
