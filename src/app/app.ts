@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
-import { IconService } from './services/icon.service';
+import { IconService } from './core/services/icon.service';
 @Component({
   imports: [RouterOutlet],
   selector: 'app-root',

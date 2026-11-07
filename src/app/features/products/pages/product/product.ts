@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
 import { DiscountPipe } from '../../../../shared/pipes/discount.pipe';
 import { MatIconModule } from '@angular/material/icon';
-import { UserService } from '../../../users/services/user.service';
+import { AuthService } from '../../../auth/services/auth.service';
 import { CartService } from '../../../cart/services/cart.service';
 import { IUser } from '../../../users/interfaces/user.interface';
 
@@ -21,10 +21,10 @@ export class Product {
   private productService = inject(ProductService);
   private cartService = inject(CartService);
   private route = inject(ActivatedRoute);
-  private userService = inject(UserService);
+  private authService = inject(AuthService);
   error = signal<string | null>(null);
 
-  user = computed(() => this.userService.user() as unknown as IUser | null);
+  user = computed(() => this.authService.user() as unknown as IUser | null);
   products = computed(() => this.productService.products());
   product = computed(() => this.products().find((item) => item.id === this.route.snapshot.paramMap.get('id')));
 

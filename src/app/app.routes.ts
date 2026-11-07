@@ -26,11 +26,11 @@ export const routes: Routes = [
       },
       {
         path: 'register',
-        loadComponent: () => import('./features/users/pages/register/register')
+        loadComponent: () => import('./features/auth/pages/register/register')
       },
       {
         path: 'login',
-        loadComponent: () => import('./features/users/pages/login/login')
+        loadComponent: () => import('./features/auth/pages/login/login')
       },
       {
         path: 'product/:id',

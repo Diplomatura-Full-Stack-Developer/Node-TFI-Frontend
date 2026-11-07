@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { CurrencyPipe } from '@angular/common';
 import { computed } from '@angular/core';
-import { UserService } from '../../../users/services/user.service';
+import { AuthService } from '../../../auth/services/auth.service';
 import { MatIconModule } from '@angular/material/icon';
 import { Skeleton } from '../../../../shared/ui/skeleton/skeleton/skeleton';
 @Component({
@@ -12,7 +12,7 @@ import { Skeleton } from '../../../../shared/ui/skeleton/skeleton/skeleton';
 })
 export default class ProductsCart {
 
-  private user = inject(UserService);
+  private authService = inject(AuthService);
 
   private cartService = inject(CartService);
 
@@ -22,7 +22,7 @@ export default class ProductsCart {
 
 
   ngOnInit(): void {
-    if (this.user.user()) {
+    if (this.authService.user()) {
       this.cartService.getUserCart();
     }
   }

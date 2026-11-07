@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Navbar } from '../ui/navbar/navbar';
-import { UserService } from '../../features/users/services/user.service';
+import { AuthService } from '../../features/auth/services/auth.service';
 import { computed } from '@angular/core';
 import { ProductService } from '../../features/products/services/product.service';
 import { Router } from '@angular/router';
@@ -18,14 +18,14 @@ import { CartService } from '../../features/cart/services/cart.service'
 export class Header {
 
   private router = inject(Router);
-  private userService = inject(UserService);
+  private authService = inject(AuthService);
   public cartService = inject(CartService);
 
   totalCartQuantity = computed(() =>
     this.cartService.productsCart().reduce((total, item) => total + item.quantity, 0),
   );
 
-  user = computed(() => this.userService.user() as unknown as IUser | undefined);
+  user = computed(() => this.authService.user() as unknown as IUser | undefined);
   setTitle = computed(() => this.user()?.name ? `Hola, ${this.user()?.name}` : 'Angular');
 
   openCart = () => {

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { UserService } from '../../../features/users/services/user.service';
+import { AuthService } from '../../../features/auth/services/auth.service';
 import { inject } from '@angular/core';
 
 import { computed } from '@angular/core';
@@ -16,8 +16,8 @@ import { IUser } from '../../../features/users/interfaces/user.interface';
 })
 export class Navbar {
 
-  private userService = inject(UserService);
-  user = computed(() => this.userService.user() as unknown as IUser | undefined);
+  private authService = inject(AuthService);
+  user = computed(() => this.authService.user() as unknown as IUser | undefined);
 
   menuItems = computed<{ label: string; routerLink?: string; action?: () => void }[]>(() => [
     {
@@ -46,7 +46,7 @@ export class Navbar {
   ]);
 
   logout = () => {
-    this.userService.user.set(undefined);
+    this.authService.logoutUser();
   };
 
 }

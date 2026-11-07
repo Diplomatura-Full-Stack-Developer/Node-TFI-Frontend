@@ -1,6 +1,6 @@
 import { Component, computed } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { UserService } from '../../features/users/services/user.service';
+import { AuthService } from '../../features/auth/services/auth.service';
 import { inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -12,9 +12,9 @@ import { IUser } from '../../features/users/interfaces/user.interface';
 })
 export class Footer {
 
-  private userService = inject(UserService);
+  private authService = inject(AuthService);
 
-  user = computed(() => this.userService.user() as unknown as IUser | undefined);
+  user = computed(() => this.authService.user() as unknown as IUser | undefined);
 
   menuItems = computed<{ label: string; routerLink?: string; action?: () => void }[]>(() => [
     {
@@ -43,7 +43,7 @@ export class Footer {
   ]);
 
   logout = () => {
-    this.userService.user.set(undefined);
+    this.authService.logoutUser();
   };
 
 

@@ -2,13 +2,13 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { NgClass } from '@angular/common';
-import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import {
   USER_FORM_SCHEMA, UserField, fieldErrorMessage
     as fieldErrorMessageUser
-} from '../../validators/user-form.validator';
-import { IUser } from '../../interfaces/user.interface';
+} from '../../../users/validators/user-form.validator';
+import { IUser } from '../../../users/interfaces/user.interface';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class Register {
 
   private formBuilder = inject(FormBuilder);
   private dialog = inject(MatDialog); // TODO: Implementar el dialog de confirmación
-  private userService = inject(UserService);
+  private authService = inject(AuthService);
   private router = inject(Router);
 
 
@@ -57,7 +57,7 @@ export class Register {
 
 
 
-    this.userService.registerUser(userToRegister as IUser);
+    this.authService.registerUser(userToRegister as IUser);
 
 
     this.userForm.reset();

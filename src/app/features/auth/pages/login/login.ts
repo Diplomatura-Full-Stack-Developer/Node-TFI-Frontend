@@ -2,12 +2,12 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgClass } from '@angular/common';
-import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import {
   USER_FORM_SCHEMA, LoginField, fieldErrorMessage
     as fieldErrorMessageUser
-} from '../../validators/user-form.validator';
+} from '../../../users/validators/user-form.validator';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -20,7 +20,7 @@ export class Login {
   title: string = 'Iniciar sesión';
 
   private formBuilder = inject(FormBuilder);
-  private userService = inject(UserService);
+  private authService = inject(AuthService);
   private router = inject(Router);
 
 
@@ -46,7 +46,7 @@ export class Login {
       return;
     }
 
-    this.userService.loginUser(this.userForm.value.email as string, this.userForm.value.password as string);
+    this.authService.loginUser(this.userForm.value.email as string, this.userForm.value.password as string);
     this.userForm.reset();
     this.router.navigate(['']);
   }

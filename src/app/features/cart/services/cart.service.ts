@@ -5,7 +5,7 @@ import { ICartProduct } from "../interfaces/cart.interface";
 import { HttpClient } from "@angular/common/http";
 import { Service } from "@angular/core";
 import { IUser } from "../../users/interfaces/user.interface";
-import { UserService } from "../../users/services/user.service";
+import { AuthService } from "../../auth/services/auth.service";
 import { Router } from "@angular/router";
 import { environment } from "../../../../environments/environment";
 import { finalize } from "rxjs/operators";
@@ -15,13 +15,13 @@ export class CartService {
 
 
   private readonly http = inject(HttpClient);
-  private userService = inject(UserService);
+  private authService = inject(AuthService);
   private router = inject(Router);
   private apiUrl = environment.apiUrl;
 
   isLoading = signal(false);
 
-  user = computed(() => this.userService.user() as unknown as IUser | null);
+  user = computed(() => this.authService.user() as unknown as IUser | null);
 
   userCart = signal<{ cartId: string, products: ICartProduct[], total: number, userId: string }>({ cartId: '', products: [], total: 0, userId: this.user()?._id as unknown as string });
 
