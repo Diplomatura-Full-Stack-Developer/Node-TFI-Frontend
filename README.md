@@ -20,8 +20,9 @@ No se pretende desarrollar una aplicación completa, sino establecer algunas fun
 - Se crea un componente skeleton que permite mostrar un loading (indicador de carga) mientras se cargan los cards de los productos en la página de inicio y además en la página de carrito. Para ello, se reutiliza el componente skeleton diferenciando su funcionalidad por medio del atributo variant.<br>
 - El frontend de la aplicación se despliega en Firebase Hosting.<br>
 - No se adjuntan imágenes de pantallas, ya que la aplicación se puede ver funcionando desde el link indicado más adelante.
-- Se recibe el token de autenticación en el header de la solicitud para verificar si el usuario está autenticado.
-- Se utiliza el **interceptor** de Angular para agregar el token de autenticación en el header de la solicitud.
+- Se recibe el **token** de autenticación en el **header** de la solicitud para verificar si el usuario está autenticado.
+- El **token** se almacena en una **señal** de Angular para poder ser utilizado en cualquier parte de la aplicación.Una alternativa es almacenarlo en el **localStorage**.
+- Se utiliza un **interceptor** de Angular para agregar el token de autenticación en el header de la solicitud.
 
 ### Pasos para la ejecución local:
 
