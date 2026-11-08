@@ -22,6 +22,7 @@ No se pretende desarrollar una aplicación completa, sino establecer algunas fun
 - No se adjuntan imágenes de pantallas, ya que la aplicación se puede ver funcionando desde el link indicado más adelante.
 - Se recibe el **token** de autenticación en el **header** de la solicitud para verificar si el usuario está autenticado.
 - El **token** se almacena en una **señal** de Angular para poder ser utilizado en cualquier parte de la aplicación.Una alternativa es almacenarlo en el **localStorage**.
+- En caso de utilizar el localStorage, la información se puede recuperar si se recarga la página.
 - Se utiliza un **interceptor** de Angular para agregar el token de autenticación en el header de la solicitud.
 
 ### Pasos para la ejecución local:
