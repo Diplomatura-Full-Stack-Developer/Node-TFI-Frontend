@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../../auth/services/auth.service';
 import { CartService } from '../../../cart/services/cart.service';
 import { IUser } from '../../../users/interfaces/user.interface';
+import { IProduct } from '../../interfaces/product.interface';
 
 @Component({
   selector: 'app-product',
@@ -26,12 +27,12 @@ export class Product {
 
   user = computed(() => this.authService.user() as unknown as IUser | null);
   products = computed(() => this.productService.products());
-  product = computed(() => this.products().find((item) => item.id === this.route.snapshot.paramMap.get('id')));
+  product = computed(() => this.products().find((item) => item.productId === this.route.snapshot.paramMap.get('id')));
 
 
 
-  addProductToCart(userId: string): void {
-    this.cartService.addProductToCart(userId, this.product()?.id as unknown as string);
+  addProductToCart(productId: string): void {
+    this.cartService.addProductToCart(productId as unknown as string);
 
   }
 

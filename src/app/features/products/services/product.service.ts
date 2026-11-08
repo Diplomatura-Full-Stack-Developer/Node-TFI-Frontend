@@ -20,17 +20,17 @@ export class ProductService {
   private readonly _error = signal<string | null>(null);
   readonly error = this._error.asReadonly();
 
-  private toProduct(raw: IProduct & { _id?: string }): IProduct {
+  private toProduct(raw: IProduct & { productId?: string }): IProduct {
     return {
       ...raw,
-      id: raw.id ?? String(raw._id),
+      productId: raw.productId ?? String(raw.productId),
     };
   }
 
   getProducts(): void {
     this.isLoading.set(true);
     this.http
-      .get<Array<IProduct & { _id?: string }>>(`${this.apiUrl}/products`)
+      .get<Array<IProduct & { productId?: string }>>(`${this.apiUrl}/products`)
       .pipe(
         catchError((error: { message: string }) => {
           this._error.set(`Error loading products: ${error.message}`);
@@ -44,11 +44,11 @@ export class ProductService {
       });
   }
 
-  getProductById(id: string): void {
+  getProductByproductId(productId: string): void {
     this.isLoading.set(true);
     this.http
-      .get<{ message: string; data: IProduct & { _id?: string } }>(
-        `${this.apiUrl}/products/${id}`,
+      .get<{ message: string; data: IProduct & { productId?: string } }>(
+        `${this.apiUrl}/products/${productId}`,
       )
       .pipe(
         catchError((error: { message: string }) => {
@@ -66,7 +66,7 @@ export class ProductService {
 
 
   addProduct(product: IProduct): void {
-    this.http.post<IProduct & { _id?: string }>(`${this.apiUrl}/product`, product)
+    this.http.post<IProduct & { productId?: string }>(`${this.apiUrl}/product`, product)
       .pipe(
         catchError((error: { message: string }) => {
           this._error.set(`Error adding product: ${error.message}`);
@@ -74,11 +74,11 @@ export class ProductService {
         }),
       )
       .subscribe((response) => {
-        this.products.set([this.toProduct(response as IProduct & { _id?: string })]);
+        this.products.set([this.toProduct(response as IProduct & { productId?: string })]);
       });
   }
 
-  deleteProduct(id: string): void {
+  deleteProduct(productId: string): void {
   }
 
   searchProducts(search: string) {

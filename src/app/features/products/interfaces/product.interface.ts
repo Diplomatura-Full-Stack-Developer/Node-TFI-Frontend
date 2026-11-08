@@ -1,5 +1,5 @@
 export interface IProduct {
-  id: string;
+  productId: string;
   deleted: boolean;
   category: string;
   brand: string;

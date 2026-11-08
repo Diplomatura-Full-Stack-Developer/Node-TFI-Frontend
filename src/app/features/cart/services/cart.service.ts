@@ -23,13 +23,12 @@ export class CartService {
 
   user = computed(() => this.authService.user() as unknown as IUser | null);
 
-  userCart = signal<{ cartId: string, products: ICartProduct[], total: number, userId: string }>({ cartId: '', products: [], total: 0, userId: this.user()?._id as unknown as string });
+  userCart = signal<{ cartId: string, products: ICartProduct[], total: number, productId: string }>({ cartId: '', products: [], total: 0, productId: '' });
 
   productsCart = signal<ICartProduct[]>([]);
 
   private readonly watchUser = effect(() => {
-    const current = this.user();
-    const userId = current?._id;
+    const userId = this.user()?.userId;
     if (!userId) {
       this.productsCart.set([]);
       return;
@@ -39,15 +38,15 @@ export class CartService {
 
   getUserCart(): void {
     this.isLoading.set(true);
-    const userId = this.user()?._id;
-    if (!userId) {
+    const productId = this.userCart().productId;
+    if (!productId) {
       this.productsCart.set([]);
       this.isLoading.set(false);
       return;
     }
 
     this.http.get<{ cartId: string; products: { productId: string; quantity: number }[]; total: number }>(
-      `${this.apiUrl}/cart/${userId}`,
+      `${this.apiUrl}/cart/${this.user()?.userId}`,
     ).subscribe({
       next: (res) => {
         const itemsCart = res.products ?? [];
@@ -55,7 +54,7 @@ export class CartService {
           cartId: res.cartId ?? '',
           products: [],
           total: res.total ?? 0,
-          userId,
+          productId: this.userCart().productId,
         });
         if (itemsCart.length === 0) {
           this.productsCart.set([]);
@@ -88,7 +87,7 @@ export class CartService {
           next: (res) => {
             const item: ICartProduct = {
               ...res.data,
-              id: res.data.id ?? cartItem.productId,
+              productId: res.data.productId ?? cartItem.productId,
               quantity: cartItem.quantity,
             };
             this.productsCart.update((current) => [...current, item]);
@@ -97,17 +96,17 @@ export class CartService {
     });
   }
 
-  addProductToCart(userId: string, productId: string): void {
+  addProductToCart(productId: string): void {
 
     if (this.userCart().cartId !== '') {
       this.http.post(`${this.apiUrl}/cart/${this.userCart().cartId}/products`, { productId }).subscribe((res: any) => {
-        this.userCart.set({ cartId: res.cartId, products: res.products, total: res.total, userId: this.user()?._id as unknown as string });
+        this.userCart.set({ cartId: res.cartId, products: res.products, total: res.total, productId });
         this.router.navigate(['/products-cart']);
       });
     }
     else {
-      this.http.post(`${this.apiUrl}/cart`, { userId: this.user()?._id as unknown as string, productId: productId }).subscribe((res: any) => {
-        this.userCart.set({ cartId: res.cartId, products: res.products, total: res.total, userId: this.user()?._id as unknown as string });
+      this.http.post(`${this.apiUrl}/cart`, { userId: this.user()?.userId, productId }).subscribe((res: any) => {
+        this.userCart.set({ cartId: res.cartId, products: res.products, total: res.total, productId });
         this.router.navigate(['/products-cart']);
       });
     }

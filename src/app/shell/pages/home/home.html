@@ -22,7 +22,7 @@
         <app-skeleton />
       }
     } @else {
-      @for (product of filteredProducts(); track product.id) {
+      @for (product of filteredProducts(); track product.productId) {
         <app-product-card [product]="product"></app-product-card>
       }
     }

@@ -38,7 +38,7 @@
             matButton
             class="bg-accent-600 text-white"
             [disabled]="!user()"
-            (click)="addProductToCart(user()!._id!)"
+            (click)="addProductToCart(product.productId)"
           >
             Agregar al carrito
           </button>
