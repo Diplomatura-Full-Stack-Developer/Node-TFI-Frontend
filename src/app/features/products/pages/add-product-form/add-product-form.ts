@@ -6,7 +6,7 @@ import { PRODUCT_FORM_SCHEMA, ProductField, fieldErrorMessage } from '../../../c
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgClass } from '@angular/common';
-import { ConfirmDialog } from '../../../../shared/ui/confirm-dialog/confirm-dialog';
+import { ConfirmDialog } from '../../../../shell/main-layout/confirm-dialog/confirm-dialog';
 import { ProductService } from '../../services/product.service';
 import { IProduct } from '../../interfaces/product.interface';
 import { Router } from '@angular/router';

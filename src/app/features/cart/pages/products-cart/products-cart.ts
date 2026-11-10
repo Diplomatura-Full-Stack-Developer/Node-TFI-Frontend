@@ -4,7 +4,7 @@ import { CurrencyPipe } from '@angular/common';
 import { computed } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth.service';
 import { MatIconModule } from '@angular/material/icon';
-import { Skeleton } from '../../../../shared/ui/skeleton/skeleton/skeleton';
+import { Skeleton } from '../../../../shared/ui/skeleton/skeleton';
 @Component({
   selector: 'app-products-cart',
   imports: [CurrencyPipe, MatIconModule, Skeleton],

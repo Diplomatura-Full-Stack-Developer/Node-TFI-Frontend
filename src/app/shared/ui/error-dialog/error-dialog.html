@@ -1,1 +1,22 @@
-<p>error-handler-dialog works!</p>,
+@switch (variant) {
+  @case ('jwt-expired') {
+    <div class="bg-red-500 text-white p-4 rounded-md">
+      <p>Your session has expired. Please log in again.</p>
+    </div>
+  }
+  @case ('validation-error') {
+    <div class="bg-yellow-500 text-white p-4 rounded-md">
+      <p>There was a validation error. Please check your input and try again.</p>
+    </div>
+  }
+  @case ('not-found') {
+    <div class="bg-gray-500 text-white p-4 rounded-md">
+      <p>The item you are looking for was not found.</p>
+    </div>
+  }
+  @default {
+    <div class="bg-gray-500 text-white p-4 rounded-md">
+      <p>An error occurred. Please try again later.</p>
+    </div>
+  }
+}

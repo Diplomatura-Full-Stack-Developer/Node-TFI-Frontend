@@ -5,7 +5,7 @@ import { RouterLink } from '@angular/router';
 import { ProductService } from '../../../features/products/services/product.service';
 import { computed } from '@angular/core';
 import { signal } from '@angular/core';
-import { Skeleton } from '../../../shared/ui/skeleton/skeleton/skeleton';
+import { Skeleton } from '../../../shared/ui/skeleton/skeleton';
 @Component({
   selector: 'app-home',
   imports: [RouterLink, ProductCard, Skeleton],
