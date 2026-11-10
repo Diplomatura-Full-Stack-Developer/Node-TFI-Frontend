@@ -57,6 +57,8 @@ export class AddProductForm {
 
     const { createdAt } = this.productForm.value;
 
+
+
     this.dialog.open(ConfirmDialog, {
       data: {
         title: 'Producto agregado correctamente',
@@ -71,7 +73,6 @@ export class AddProductForm {
       ...this.productForm.value,
       id: crypto.randomUUID(),
       deleted: false,
-      createdAt: new Date(),
       features: this.productForm.value.features?.toString().split(',') || [],
       imageUrl: '/images/products/no-image.jpg',
     } as unknown as IProduct);

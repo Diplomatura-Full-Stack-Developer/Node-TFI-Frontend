@@ -31,7 +31,6 @@ export class AuthService {
         this.setToken(raw.token);
         this.user.set(raw.user as IUser);
       }),
-      catchError(() => of(null)),
     ).subscribe();
   }
 
@@ -42,7 +41,6 @@ export class AuthService {
         this.setToken(raw.token);
         this.user.set(raw.user as IUser);
       }),
-      catchError(() => of(null)),
     ).subscribe();
   }
 
