@@ -38,13 +38,6 @@ export class CartService {
 
   getUserCart(): void {
     this.isLoading.set(true);
-    const productId = this.userCart().productId;
-    if (!productId) {
-      this.productsCart.set([]);
-      this.isLoading.set(false);
-      return;
-    }
-
     this.http.get<{ cartId: string; products: { productId: string; quantity: number }[]; total: number }>(
       `${this.apiUrl}/cart/${this.user()?.userId}`,
     ).subscribe({

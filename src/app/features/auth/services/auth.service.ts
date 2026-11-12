@@ -1,7 +1,7 @@
 import { inject, Service, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IUser } from '../../users/interfaces/user.interface';
-import { catchError, of, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 
 
