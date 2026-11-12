@@ -37,18 +37,10 @@
           <button
             matButton
             class="bg-accent-600 text-white"
-            [disabled]="!user()"
             (click)="addProductToCart(product.productId)"
           >
             Agregar al carrito
           </button>
-          @if (!user()) {
-            <!-- <div class="flex flex-col items-center justify-center"> -->
-            <p class="text-accent-600 font-bold text-center">
-              Necesitas iniciar sesión para agregar al carrito
-            </p>
-            <!-- </div> -->
-          }
         </div>
       } @else {
         <div class="flex flex-col items-center justify-center">

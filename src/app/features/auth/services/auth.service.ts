@@ -44,6 +44,15 @@ export class AuthService {
     ).subscribe();
   }
 
+  refreshToken(): void {
+    this.http.post<{ newToken: string }>(`${this.apiUrl}/auth/refresh-token`, { token: this.token() }).pipe(
+      tap((response) => {
+        this.setToken(response.newToken);
+      }),
+    ).subscribe();
+  }
+
+
   logoutUser(): void {
     this.token.set(undefined);
     this.user.set(undefined);

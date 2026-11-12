@@ -49,25 +49,24 @@ export class AddProductForm {
   }
 
   onSubmit() {
+    const { createdAt } = this.productForm.value;
+
     if (this.productForm.invalid) {
       console.log('Formulario inválido');
       this.productForm.markAllAsTouched();
       return;
+    } else {
+      this.dialog.open(ConfirmDialog, {
+        data: {
+          title: 'Producto agregado correctamente',
+          message: createdAt,
+        },
+        restoreFocus: false,
+      }).afterClosed().subscribe(() => {
+        this.productForm.reset();
+      });
+      this.router.navigate(['/']);
     }
-
-    const { createdAt } = this.productForm.value;
-
-
-
-    this.dialog.open(ConfirmDialog, {
-      data: {
-        title: 'Producto agregado correctamente',
-        message: createdAt,
-      },
-      restoreFocus: false,
-    }).afterClosed().subscribe(() => {
-      this.productForm.reset();
-    });
 
     this.productService.addProduct({
       ...this.productForm.value,
@@ -77,7 +76,7 @@ export class AddProductForm {
       imageUrl: '/images/products/no-image.jpg',
     } as unknown as IProduct);
 
-    this.router.navigate(['/']);
+    // this.router.navigate(['/']);
   }
 }
 

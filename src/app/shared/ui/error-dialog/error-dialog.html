@@ -1,22 +1,15 @@
-@switch (variant) {
-  @case ('jwt-expired') {
-    <div class="bg-red-500 text-white p-4 rounded-md">
-      <p>Your session has expired. Please log in again.</p>
-    </div>
+<div class="flex flex-col gap-4 p-6">
+  <p class="text-accent-700 text-center font-bold text-xl">{{ data.title }}</p>
+  @if (data.message) {
+    <p class="text-black/80 font-bold text-start">
+      {{ data.message }}
+    </p>
   }
-  @case ('validation-error') {
-    <div class="bg-yellow-500 text-white p-4 rounded-md">
-      <p>There was a validation error. Please check your input and try again.</p>
-    </div>
-  }
-  @case ('not-found') {
-    <div class="bg-gray-500 text-white p-4 rounded-md">
-      <p>The item you are looking for was not found.</p>
-    </div>
-  }
-  @default {
-    <div class="bg-gray-500 text-white p-4 rounded-md">
-      <p>An error occurred. Please try again later.</p>
-    </div>
-  }
-}
+  <button
+    type="button"
+    [mat-dialog-close]="data.buttonText === 'Mantener sesión abierta' ? 'refresh' : undefined"
+    class="bg-primary-500 text-white rounded-md p-2 cursor-pointer font-bold"
+  >
+    {{ data.buttonText ?? 'Aceptar' }}
+  </button>
+</div>

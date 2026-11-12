@@ -11,27 +11,31 @@ export const errorHandlerInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError((response: HttpErrorResponse) => {
       const data = response.error;
-
       switch (data.code) {
         case "VALIDATION_ERROR":
-          // data.errors → junto a cada campo
-          console.log(data.code);
-          console.log(data.errors);
+          errorHandlerService.handlerZodError(data);
           break;
         case "DUPLICATE_KEY":
-          // toast con data.message
-          console.log(data.code);
-          console.log(data.message);
+          errorHandlerService.handlerDuplicatedKey(data);
           break;
-        case "APP_ERROR":
-          // toast con data.message
+        case "AUTHORIZATION_HEADER_MISSING":
+          errorHandlerService.handlerAuthError(data);
+
+          break;
+        case "TOKEN_INVALID":
+          if (req.url.includes("/auth/refresh-token")) {
+            break;
+          }
+          errorHandlerService.handlerInvalidToken(data)
+          break;
+        case "INVALID_CREDENTIALS":
+          errorHandlerService.handlerInvalidCredentials(data);
           break;
         default:
-          if (response.status === 401) {
-            // ir a login
-          }
-          break;
-      }      return throwError(() => response);
+          errorHandlerService.handlerDefaultError(data);
+
+      }
+      return throwError(() => response);
     })
   );
 };
