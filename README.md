@@ -19,11 +19,17 @@ No se pretende desarrollar una aplicación completa, sino establecer algunas fun
 - Se implementa el funcionamiento del carrito de tal forma que en la base de datos se mantenga la persistencia del carrito del usuario activo. Por lo tanto, el usuario debe loguearse para poder ver el carrito.<br>
 - Se crea un componente skeleton que permite mostrar un loading (indicador de carga) mientras se cargan los cards de los productos en la página de inicio y además en la página de carrito. Para ello, se reutiliza el componente skeleton diferenciando su funcionalidad por medio del atributo variant.<br>
 - El frontend de la aplicación se despliega en Firebase Hosting.<br>
-- No se adjuntan imágenes de pantallas, ya que la aplicación se puede ver funcionando desde el link indicado más adelante.
-- Se recibe el **token** de autenticación en el **header** de la solicitud para verificar si el usuario está autenticado.
-- El **token** se almacena en una **señal** de Angular para poder ser utilizado en cualquier parte de la aplicación.Una alternativa es almacenarlo en el **localStorage**.
-- En caso de utilizar el localStorage, la información se puede recuperar si se recarga la página.
-- Se utiliza un **interceptor** de Angular para agregar el token de autenticación en el header de la solicitud.
+- No se adjuntan imágenes de pantallas, ya que la aplicación se puede ver funcionando desde el link indicado más adelante.<br>
+- Se recibe el **token** de autenticación en el **header** de la solicitud para verificar si el usuario está autenticado.<br>
+- El **token** se almacena en una **señal** de Angular para poder ser utilizado en cualquier parte de la aplicación.Una alternativa es almacenarlo en el **localStorage**.<br>
+- En caso de utilizar el localStorage, la información se puede recuperar si se recarga la página.<br>
+- Se utiliza un **interceptor** de Angular para agregar el token de autenticación en el header de la solicitud.<br>
+- Se establece un valor de **expiración** para obligar a renovar el token de autenticación. Se establece un lapso de tiempo corto como para mostrar todos los mensajes que llegan desde el backend.<br>
+- El mensaje para mantener la sesión abierta tiene un tiempo limitado de duración. Si no se presiona el botón, se cerrará la sesión y se redirigirá al login.<br>
+- La arquitectura diseñada para la aplicación permite que todos los errores lleguen al frontend a través de un **interceptor** y se gestionen adecuadamente.Esto evita además que la aplicación se rompa por errores de comunicación con el backend.<br>
+- Por medio de un **dialog** y su reutilización se intentan mostrar todos los mensajes que llegan desde el backend.<br>
+- En una aplicación real, no es necesario que todos los mensajes tengan que llegar al usuario. Algunos errores deben ser gestionados internamente por la aplicación.<br>
+- Las rutas protegidas por el token son las del carrito y se recibiran mensajes de error al intentar entrar en dichas rutas.<br>
 
 ### Pasos para la ejecución local:
 
