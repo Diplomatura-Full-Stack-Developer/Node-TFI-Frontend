@@ -30,6 +30,7 @@ No se pretende desarrollar una aplicación completa, sino establecer algunas fun
 - Por medio de un **dialog** y su reutilización se intentan mostrar todos los mensajes que llegan desde el backend.<br>
 - En una aplicación real, no es necesario que todos los mensajes tengan que llegar al usuario. Algunos errores deben ser gestionados internamente por la aplicación.<br>
 - Las rutas protegidas por el token son las del carrito y se recibiran mensajes de error al intentar entrar en dichas rutas.<br>
+- Como la tarea corresponde a un curso de backend (Node JS), se implementan en los formularios del frontend validaciones básicas, para que lleguen los mensajes de validación de los esquemas de Zod desde el backend. En una aplicación real, las validaciones del frontend tienen que ser más robustas, ya que cumplen una función diferente y además refuerzan la seguridad de la aplicación.<br>
 
 ### Pasos para la ejecución local:
 
