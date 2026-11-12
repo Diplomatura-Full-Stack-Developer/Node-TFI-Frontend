@@ -26,7 +26,7 @@ export class Header {
   );
 
   user = computed(() => this.authService.user() as unknown as IUser | undefined);
-  setTitle = computed(() => this.user()?.name ? `Hola, ${this.user()?.name}` : 'Angular');
+  setTitle = computed(() => this.user()?.name ? `Hola, ${this.user()?.name}` : 'Node / Angular');
 
   openCart = () => {
     this.router.navigate(['/products-cart']);
