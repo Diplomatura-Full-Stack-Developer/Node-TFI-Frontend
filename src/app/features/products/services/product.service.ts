@@ -1,7 +1,7 @@
 import { inject, Service, signal } from '@angular/core';
 import { IProduct } from '../interfaces/product.interface';
 import { HttpClient } from '@angular/common/http';
-import { catchError, throwError } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 
 
@@ -14,6 +14,7 @@ export class ProductService {
 
 
   products = signal<IProduct[]>([]);
+  selectedProduct = signal<IProduct | null>(null);
 
   isLoading = signal<boolean>(false);
 
@@ -37,16 +38,25 @@ export class ProductService {
       });
   }
 
-  getProductByproductId(productId: string): void {
+  getProductByProductId(productId: string): void {
     this.isLoading.set(true);
+    this._error.set(null);
+    this.selectedProduct.set(null);
     this.http
       .get<{ message: string; data: IProduct & { productId?: string } }>(
         `${this.apiUrl}/products/${productId}`,
       )
-      .subscribe((response) => {
-        const raw = response?.data;
-        this.products.set(raw ? [this.toProduct(raw)] : []);
-        this.isLoading.set(false);
+      .subscribe({
+        next: (response) => {
+          const raw = response?.data;
+          this.selectedProduct.set(raw ? this.toProduct(raw) : null);
+          this.isLoading.set(false);
+        },
+        error: (response: HttpErrorResponse) => {
+          this.selectedProduct.set(null);
+          this._error.set(response.error?.message ?? 'Producto no encontrado');
+          this.isLoading.set(false);
+        },
       });
   }
 

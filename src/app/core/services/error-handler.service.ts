@@ -67,9 +67,9 @@ export class ErrorHandlerService extends ErrorHandler {
   }
 
   handlerDefaultError(data: any) {
-    const title = "Error";
+    const title = data.code
     const message = data.message;
-    const redirect = "login";
+    const redirect = "";
     this.errorDialogService.openDialog(title as string, message as string, redirect);
   }
 }

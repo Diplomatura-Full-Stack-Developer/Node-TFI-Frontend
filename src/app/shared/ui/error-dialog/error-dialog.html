@@ -1,14 +1,14 @@
 <div class="flex flex-col gap-4 p-6">
-  <p class="text-accent-700 text-center font-bold text-xl">{{ data.title }}</p>
+  <p class="text-accent-700 text-center font-bold text-xl text-shadow-2xs!">{{ data.title }}</p>
   @if (data.message) {
-    <p class="text-black/80 font-bold text-start">
+    <p class="text-black/80 font-bold text-center! text-shadow-2xs!">
       {{ data.message }}
     </p>
   }
   <button
     type="button"
     [mat-dialog-close]="data.buttonText === 'Mantener sesión abierta' ? 'refresh' : undefined"
-    class="bg-primary-500 text-white rounded-md p-2 cursor-pointer font-bold"
+    class="bg-primary-500 text-white/80 rounded-md p-2 cursor-pointer border-primary-500 border-none! shadow-xl! hover:bg-primary-600! transition-all! duration-300!"
   >
     {{ data.buttonText ?? 'Aceptar' }}
   </button>

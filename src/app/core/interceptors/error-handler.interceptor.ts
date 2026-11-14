@@ -31,6 +31,8 @@ export const errorHandlerInterceptor: HttpInterceptorFn = (req, next) => {
         case "INVALID_CREDENTIALS":
           errorHandlerService.handlerInvalidCredentials(data);
           break;
+        case "PRODUCT_NOT_FOUND":
+          break;
         default:
           errorHandlerService.handlerDefaultError(data);
 

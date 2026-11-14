@@ -1,4 +1,6 @@
-@if (product(); as product) {
+@if (isLoading()) {
+  <app-skeleton class="m-4" />
+} @else if (product(); as product) {
   <mat-card
     class="example-card justify-between items-center bg-primary-100/80! shadow-lg! border-none! m-4"
     appearance="outlined"
@@ -50,5 +52,7 @@
     </mat-card-actions>
   </mat-card>
 } @else {
-  <div class="text-accent-600 text-center text-2xl font-bold">Producto no encontrado</div>
+  <div class="text-accent-600 text-center text-2xl font-bold">
+    {{ error() ?? 'Producto no encontrado' }}
+  </div>
 }
